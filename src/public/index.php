@@ -72,8 +72,8 @@ use($pdo){
     $data = json_decode($request->getBody()) ?: $request->getParams();
     $firstname = $data['firstname'];
     $lastname = $data['lastname'];
-    $query = "INSERT INTO user_info (firstname,lastname)
-                VALUES(?,?)";
+    $query = "INSERT INTO user_info (firstname,lastname,created_by,updated_by)
+                VALUES(?,?,'9999','0')";
     $db = $pdo->query($query,array($firstname, $lastname));
 
 
