@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <style>
+        html,
+        body,
+        .container {
+            height: 100%;
+        }
+        
+        .vertical-center-row {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        
+        .center-block {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container ">
+
+        <div class="row center-block">
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <form action="/edit/save" method="POST">
+
+
+                    <div class="input-group">
+                        <div class="input-group-addon">Firstname</div>
+                        <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Firstname" value="{{data.firstname}}">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <div class="input-group-addon">Lastname</div>
+                        <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Lastname" value="{{data.lastname}}">
+                    </div>
+                    <input type="hidden" name="id" value="{{data.us_id}}">
+                    <button type=" submit " class="btn btn-lg btn-primary center-block ">confirm</button>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

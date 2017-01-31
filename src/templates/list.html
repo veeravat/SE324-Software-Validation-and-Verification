@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>List all student name</h1>
+
+
+        </div>
+    </div>
+
+    <div class="container">
+        <a href="/register" type="button" class="btn btn-success" style="float: right">+ Add new</a>
+        <br>
+        <hr>
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>update</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key,value in data %}
+                <tr>
+                    <td>{{key+1}}</td>
+                    <td>{{data[key].firstname}}</td>
+                    <td>{{data[key].lastname}}</td>
+                    <td width="50px">
+                        <a href="/edit/{{data[key].us_id}}" type="button" class="btn btn-primary">update</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+
+</body>
+
+</html>
