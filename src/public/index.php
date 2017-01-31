@@ -85,10 +85,16 @@ use($pdo){
     ]);
 });
 
-$app->get('/',function($request,$respond,$args){
-    $respond->getBody()->write("Hi");
-    return $respond;
+
+$app->get('/',function($request,$respond,$args)
+use($pdo){
+    $query = "SELECT * FROM user_info";
+    $data = $pdo->query($query);
+    return $this->view->render($respond,'list.html',[
+        'data'  => $data
+    ]);
 });
+
 
 
 $app->get('/register',function($request,$respond,$args){
