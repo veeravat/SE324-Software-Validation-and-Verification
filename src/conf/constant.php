@@ -10,7 +10,7 @@ foreach ($_SERVER as $key => $value) {
     $password = preg_replace("/^.*Password=(.+?)$/", "\\1", $value);
 }
 
-if($servername){
+if(isset($servername)){
 return $clasa = json_decode(json_encode([
     'setting' => [
         'db' => [

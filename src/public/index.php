@@ -22,26 +22,25 @@ $container['view'] = function ($container) {
     return $view;
 };
 
+// Old lab
+// $app->get('/hello/{name}',function($request,$respond,$args){
+//     return $this->view->render($respond,'profile.html',[
+//         'name' => $args['name']
+//     ]);
+// });
 
-$app->get('/hello/{name}',function($request,$respond,$args){
-    return $this->view->render($respond,'profile.html',[
-        'name' => $args['name']
-    ]);
-});
-
-$app->get('/select/{userid}',function($request,$respond,$args)
-use($pdo){
-    $query = "SELECT * FROM user_info WHERE us_id=".$args['userid'];
-    $data = $pdo->query($query);
-    return $this->view->render($respond,'profile.html',[
-        'data'  => $data[0]
-    ]);
-});
-
+// $app->get('/select/{userid}',function($request,$respond,$args)
+// use($pdo){
+//     $query = "SELECT * FROM user_info WHERE us_id=".$args['userid'];
+//     $data = $pdo->query($query);
+//     return $this->view->render($respond,'profile.html',[
+//         'data'  => $data[0]
+//     ]);
+// });
 $app->get('/edit/{userid}',function($request,$respond,$args)
 use($pdo){
-    $query = "SELECT * FROM user_info WHERE us_id=".$args['userid'];
-    $data = $pdo->query($query);
+    $query = "SELECT * FROM user_info WHERE us_id = ?";
+    $data = $pdo->query($query,array($args['userid']));
     return $this->view->render($respond,'edit.html',[
         'data'  => $data[0]
     ]);
@@ -50,8 +49,8 @@ use($pdo){
 $app->post('/edit/save',function($request,$respond,$args)
 use($pdo){
     $data = json_decode($request->getBody()) ?: $request->getParams();
-    $query = "UPDATE user_info SET firstname='".$data['firstname']."' , lastname='".$data['lastname']."' WHERE us_id=".$data['id'];
-    $db = $pdo->query($query);
+    $query = "UPDATE user_info SET firstname= ?, lastname= ? WHERE us_id= ?";
+    $db = $pdo->query($query,array($data['firstname'],$data['lastname'],$data['id']));
     return $this->view->render($respond,'saveedit.html',[
         'firstname'  => $data['firstname'],
         'lastname'  => $data['lastname']
@@ -71,10 +70,11 @@ $app->post('/create',function($request,$respond,$args)
 use($pdo){
    
     $data = json_decode($request->getBody()) ?: $request->getParams();
+    $firstname = $data['firstname'];
+    $lastname = $data['lastname'];
     $query = "INSERT INTO user_info (firstname,lastname)
-                VALUES ('".$data['firstname']."','".$data['lastname']."')
-     ";
-    $db = $pdo->query($query);
+                VALUES(?,?)";
+    $db = $pdo->query($query,array($firstname, $lastname));
 
 
    return $this->view->render($respond,'save.html',[
