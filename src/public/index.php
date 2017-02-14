@@ -1,10 +1,21 @@
 <?php
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
+use \Respect\Validation\Validator as v;
 
 require '../../vendor/autoload.php';
 require 'common.php';
 $app = new \Slim\App;
+
+
+// Setup validation
+$usernameValidator = v::alnum()->noWhitespace()->length(1,10);
+$ageValidator = v::numeric()->positive()->between(1,20);
+$validator = array(
+    'username'  => $usernameValidator,
+    'age'       => $ageValidator
+);
+
 
 // Get container
 $container = $app->getContainer();
@@ -95,6 +106,29 @@ $app->get('/register',function($request,$respond,$args){
     return $this->view->render($respond,'register.html',[
     ]);
 });
+$app->get('/form',function($request,$respond,$args){
+    return $this->view->render($respond,'validate.html',[
+    ]);
+});
+
+
+$app->post('/regis/per/route',function($request,$respond,$args){
+    $data = json_decode($request->getBody()) ?: $request->getParams();
+    echo "<pre>";
+    print_r($data);exit;
+
+    if($request->getAttribute('has errors')){
+        $error = $request->getAttribute('errors');
+        foreach($error as $key => $list){
+            foreach ($list as $value) {
+                $err_mes .= $key." ".$value."<br>";
+            }
+        }
+        $respond->getBody()->write("Error: ".$err_mes);
+    }else{
+        $respond->getBody()->write("Valid");
+    }
+})->add(new \DavidePastore\Slim\Validation\Validation($validator));
 
 $app->run();
 

@@ -8,14 +8,20 @@ class ComposerStaticInit99b8bf9eaa30e8071c6e8f135afad6c8
 {
     public static $files = array (
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Slim\\Views\\' => 11,
             'Slim\\PDO\\' => 9,
             'Slim\\' => 5,
+        ),
+        'R' => 
+        array (
+            'Respect\\Validation\\' => 19,
         ),
         'P' => 
         array (
@@ -29,9 +35,17 @@ class ComposerStaticInit99b8bf9eaa30e8071c6e8f135afad6c8
         array (
             'FastRoute\\' => 10,
         ),
+        'D' => 
+        array (
+            'DavidePastore\\Slim\\Validation\\' => 30,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
         'Slim\\Views\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/twig-view/src',
@@ -44,6 +58,10 @@ class ComposerStaticInit99b8bf9eaa30e8071c6e8f135afad6c8
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
         ),
+        'Respect\\Validation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/respect/validation/library',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -55,6 +73,10 @@ class ComposerStaticInit99b8bf9eaa30e8071c6e8f135afad6c8
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
+        ),
+        'DavidePastore\\Slim\\Validation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/davidepastore/slim-validation/src',
         ),
     );
 
