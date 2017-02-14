@@ -119,11 +119,11 @@ $app->get('/form',function($request,$respond,$args){
 
 
 $app->post('/regis/per/route',function($request,$respond,$args){
+    
     $data = json_decode($request->getBody()) ?: $request->getParams();
-    echo "<pre>";
-    print_r($data);exit;
 
-    if($request->getAttribute('has errors')){
+    if($request->getAttribute('has_errors')){
+        $err_mes  = "";
         $error = $request->getAttribute('errors');
         foreach($error as $key => $list){
             foreach ($list as $value) {
